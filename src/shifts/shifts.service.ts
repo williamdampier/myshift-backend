@@ -23,7 +23,7 @@ export class ShiftsService {
 
   async deleteShift(id: string) {
     try {
-      const deletedRecord = await this.shiftRepository.destroy({
+      await this.shiftRepository.destroy({
         where: { id },
       });
       return 'Shift has been deleted';
