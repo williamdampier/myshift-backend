@@ -25,9 +25,6 @@ export class JwtAuthGuard implements CanActivate {
       req.user = user;
       return true;
     } catch (error) {
-      console.log(error);
-      console.log(`while private key is: ${process.env.PRIVATE_KEY}`);
-
       throw new UnauthorizedException({
         message: 'Not Authorized',
       });
