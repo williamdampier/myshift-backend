@@ -8,7 +8,9 @@ import { HttpStatus } from '@nestjs/common/enums';
 export class RolesService {
   constructor(@InjectModel(Role) private roleRepository: typeof Role) {}
   async createRole(dto: CreateRoleDTO): Promise<Role> {
-    const existingRole = this.getRoleByValue(dto.value);
+    const existingRole = await this.getRoleByValue(dto.value);
+    console.log(existingRole);
+
     if (existingRole) {
       throw new HttpException('Role exists', HttpStatus.BAD_REQUEST);
     }

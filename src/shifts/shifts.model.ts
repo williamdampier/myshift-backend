@@ -12,6 +12,8 @@ import { User } from 'src/users/user.model';
 //interface for creating objects from this class
 interface ShiftAttributes {
   id: string;
+  start: string;
+  end: string;
   day: number;
   month: string;
   year: number;
@@ -30,6 +32,20 @@ export class Shift extends Model<Shift, ShiftAttributes> {
     primaryKey: true,
   })
   id: string;
+
+  @ApiProperty({ example: '12:00', description: 'Shift start time' })
+  @Column({
+    type: DataType.STRING,
+    allowNull: false,
+  })
+  start: string;
+
+  @ApiProperty({ example: '23:45', description: 'Shift end time' })
+  @Column({
+    type: DataType.STRING,
+    allowNull: false,
+  })
+  end: string;
 
   @ApiProperty({
     example: '19',
@@ -78,7 +94,4 @@ export class Shift extends Model<Shift, ShiftAttributes> {
   @Column({ type: DataType.STRING })
   @ForeignKey(() => User)
   userId: string;
-
-  @BelongsTo(() => User)
-  author: User;
 }

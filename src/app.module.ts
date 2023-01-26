@@ -24,6 +24,9 @@ import { Shift } from './shifts/shifts.model';
       database: process.env.PG_DATABASE,
       models: [User, Role, UserRoles, Shift],
       autoLoadModels: true,
+      // !TODO, Make DB Backup first before porceeding with the next 'sync' option
+      // !Uncomment if Model needs changes,
+      // sync: { alter: true },
     }),
     UsersModule,
     AuthModule,

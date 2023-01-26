@@ -15,6 +15,7 @@ export class JwtAuthGuard implements CanActivate {
       const authHeader = req.headers.authorization;
       const bearer = authHeader.split(' ')[0];
       const token = authHeader.split(' ')[1];
+
       if (bearer !== 'Bearer' || !token) {
         throw new UnauthorizedException({
           message: 'Not Authorized',
@@ -24,6 +25,9 @@ export class JwtAuthGuard implements CanActivate {
       req.user = user;
       return true;
     } catch (error) {
+      console.log(error);
+      console.log(`while private key is: ${process.env.PRIVATE_KEY}`);
+
       throw new UnauthorizedException({
         message: 'Not Authorized',
       });

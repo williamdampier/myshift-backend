@@ -4,6 +4,7 @@ import { RolesService } from './roles.service';
 import { CreateRoleDTO } from './dto/create-role.dto';
 import { Role } from './role.model';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger/dist';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { Roles } from 'src/auth/roles-auth.decorator';
 import { RolesGuard } from 'src/auth/roles.guard';
 
@@ -15,7 +16,7 @@ export class RolesController {
   @ApiOperation({ summary: 'Create role' })
   @ApiResponse({ status: 200, type: Role })
   @Roles('ADMIN')
-  @UseGuards(RolesGuard)
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @Post()
   createRole(@Body() dto: CreateRoleDTO): Promise<Role> {
     return this.roleService.createRole(dto);
