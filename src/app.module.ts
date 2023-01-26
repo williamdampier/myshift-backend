@@ -3,6 +3,12 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { SequelizeModule } from '@nestjs/sequelize';
+import { User } from './users/user.model';
+import { UsersModule } from './users/user.module';
+import { AuthModule } from './auth/auth.module';
+import { RolesModule } from './roles/roles.module';
+import { UserRoles } from './roles/user-roles.model';
+import { Role } from './roles/role.model';
 
 @Module({
   imports: [
@@ -14,9 +20,12 @@ import { SequelizeModule } from '@nestjs/sequelize';
       username: process.env.PG_USERNAME,
       password: process.env.PG_PASSWORD,
       database: process.env.PG_DATABASE,
-      models: [],
+      models: [User, Role, UserRoles],
       autoLoadModels: true,
     }),
+    UsersModule,
+    AuthModule,
+    RolesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
