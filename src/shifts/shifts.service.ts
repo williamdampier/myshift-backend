@@ -10,7 +10,7 @@ import { HttpStatus } from '@nestjs/common/enums';
 export class ShiftsService {
   constructor(@InjectModel(Shift) private shiftRepository: typeof Shift) {}
 
-  async createShift(dto: CreateShiftDto) {
+  async createShift(dto: CreateShiftDto): Promise<Shift> {
     const id = uuid.v4();
     const shift = await this.shiftRepository.create({ id, ...dto });
     return shift;

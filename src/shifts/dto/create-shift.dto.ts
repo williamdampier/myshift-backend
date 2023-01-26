@@ -1,4 +1,4 @@
-import { IsString, IsNumber, IsOptional } from 'class-validator';
+import { IsString, IsNumber, IsOptional, IsNotEmpty } from 'class-validator';
 import { Type } from 'class-transformer';
 import { ApiProperty } from '@nestjs/swagger';
 
@@ -8,6 +8,7 @@ export class CreateShiftDto {
     description: 'Shift start time',
   })
   @IsString({ message: 'Must be a String' })
+  @IsNotEmpty()
   readonly start: string;
 
   @ApiProperty({
@@ -15,12 +16,15 @@ export class CreateShiftDto {
     description: 'Shift end time',
   })
   @IsString({ message: 'Must be a String' })
+  @Type(() => String)
+  @IsNotEmpty()
   readonly end: string;
 
   @ApiProperty({
     example: '27',
     description: 'Shift day of the month',
   })
+  @IsNotEmpty()
   @IsNumber({}, { message: 'Must be a Number' })
   @Type(() => Number)
   readonly day: number;
@@ -29,6 +33,7 @@ export class CreateShiftDto {
     example: 'July',
     description: 'Shift month',
   })
+  @IsNotEmpty()
   @IsString({ message: 'Must be a String' })
   readonly month: string;
 
@@ -36,6 +41,7 @@ export class CreateShiftDto {
     example: '2023',
     description: 'Shift year',
   })
+  @IsNotEmpty()
   @IsNumber({}, { message: 'Must be a Number' })
   @Type(() => Number)
   readonly year: number;
@@ -44,6 +50,7 @@ export class CreateShiftDto {
     example: '9.5',
     description: 'Shift total hours',
   })
+  @IsNotEmpty()
   @IsNumber({}, { message: 'Must be a Number' })
   @Type(() => Number)
   readonly total: number;
@@ -60,6 +67,7 @@ export class CreateShiftDto {
     example: '2oi22o-wqqqw0-qqse-223',
     description: 'User Id shifts belongs to',
   })
+  @IsNotEmpty()
   @IsString({ message: 'Must be a String' })
   readonly userId: string;
 }

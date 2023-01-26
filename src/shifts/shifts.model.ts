@@ -33,14 +33,22 @@ export class Shift extends Model<Shift, ShiftAttributes> {
   })
   id: string;
 
-  @ApiProperty({ example: '12:00', description: 'Shift start time' })
+  @ApiProperty({
+    example: '12:00',
+    description: 'Shift start time',
+    required: true,
+  })
   @Column({
     type: DataType.STRING,
     allowNull: false,
   })
   start: string;
 
-  @ApiProperty({ example: '23:45', description: 'Shift end time' })
+  @ApiProperty({
+    example: '23:45',
+    description: 'Shift end time',
+    required: true,
+  })
   @Column({
     type: DataType.STRING,
     allowNull: false,
