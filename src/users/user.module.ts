@@ -7,12 +7,13 @@ import { JwtModule } from '@nestjs/jwt';
 import { AuthModule } from '../auth/auth.module';
 import { UserRoles } from '../roles/user-roles.model';
 import { RolesModule } from 'src/roles/roles.module';
+import { Shift } from '../shifts/shifts.model';
 
 @Module({
   controllers: [UserController],
   providers: [UserService],
   imports: [
-    SequelizeModule.forFeature([User, UserRoles]),
+    SequelizeModule.forFeature([User, UserRoles, Shift]),
     JwtModule,
     AuthModule,
     RolesModule,

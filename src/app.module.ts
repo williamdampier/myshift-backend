@@ -10,6 +10,7 @@ import { RolesModule } from './roles/roles.module';
 import { UserRoles } from './roles/user-roles.model';
 import { Role } from './roles/role.model';
 import { ShiftsModule } from './shifts/shifts.module';
+import { Shift } from './shifts/shifts.model';
 
 @Module({
   imports: [
@@ -21,7 +22,7 @@ import { ShiftsModule } from './shifts/shifts.module';
       username: process.env.PG_USERNAME,
       password: process.env.PG_PASSWORD,
       database: process.env.PG_DATABASE,
-      models: [User, Role, UserRoles],
+      models: [User, Role, UserRoles, Shift],
       autoLoadModels: true,
     }),
     UsersModule,

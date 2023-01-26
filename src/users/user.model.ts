@@ -9,6 +9,7 @@ import {
 } from 'sequelize-typescript';
 import { Role } from '../roles/role.model';
 import { UserRoles } from 'src/roles/user-roles.model';
+import { Shift } from '../shifts/shifts.model';
 //interface for creating objects from this call -> compulsory email and pswd only
 interface UserAttributes {
   id: string;
@@ -46,7 +47,6 @@ export class User extends Model<User, UserAttributes> {
   @BelongsToMany(() => Role, () => UserRoles)
   roles: Role[];
 
-  //!TODO add Shift model
-  // @HasMany(() => Shift)
-  // posts: Shift[];
+  @HasMany(() => Shift)
+  shifts: Shift[];
 }
