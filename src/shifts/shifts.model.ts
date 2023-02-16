@@ -5,7 +5,6 @@ import {
   DataType,
   Model,
   ForeignKey,
-  BelongsTo,
 } from 'sequelize-typescript';
 import { User } from 'src/users/user.model';
 
@@ -18,7 +17,7 @@ interface ShiftAttributes {
   month: string;
   year: number;
   total: number;
-  location: string;
+  location?: string;
   userId: string;
 }
 
